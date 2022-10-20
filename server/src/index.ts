@@ -4,6 +4,7 @@ import express from 'express';
 import path from 'path';
 import { GetBreedById, GetBreeds, GetImagesByBreedId } from './api';
 import { IBreed } from './models/breed.model';
+import { IImage } from './models/image.model';
 dotenv.config();
 
 const PORT = process.env.PORT || 3001;
@@ -41,7 +42,9 @@ app.get('/breeds/:id', async (req: { params: { id: string } }, res) => {
 
 app.get('/breeds/:id/images', async (req: { params: { id: string } }, res) => {
     try {
-        const images = await GetImagesByBreedId(req.params.id);
+        const images = (await GetImagesByBreedId(
+            req.params.id
+        )) as AxiosResponse<IImage[]>;
         res.json(images.data);
     } catch (err) {
         console.error(err);

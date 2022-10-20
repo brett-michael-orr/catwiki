@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { IBreed } from '../models/breed.model';
 import { ERRORS } from './errors';
 
-export const GetBreeds = () => {
+export const GetBreeds = (): Promise<AxiosResponse<IBreed[]>> => {
     return axios.get(`${process.env.API_ROOT}breeds`);
 };
 

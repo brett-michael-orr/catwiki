@@ -69,7 +69,7 @@ app.get('/breeds/:id', (req, res) => __awaiter(void 0, void 0, void 0, function*
 }));
 app.get('/breeds/:id/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const images = yield (0, api_1.GetImagesByBreedId)(req.params.id);
+        const images = (yield (0, api_1.GetImagesByBreedId)(req.params.id));
         res.json(images.data);
     }
     catch (err) {

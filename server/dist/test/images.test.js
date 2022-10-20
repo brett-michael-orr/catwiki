@@ -36,13 +36,13 @@ const dotenv = __importStar(require("dotenv"));
 const api_1 = require("../api");
 const errors_1 = require("../api/errors");
 dotenv.config();
-const BREED_TEST = "beng";
-const FAIL_BREED = "XXXX";
+const BREED_TEST = 'beng';
+const FAIL_BREED = 'XXXX';
 test('get images for the specified breed', () => __awaiter(void 0, void 0, void 0, function* () {
-    const breeds = yield (0, api_1.GetImagesByBreedId)(BREED_TEST);
+    const breeds = (yield (0, api_1.GetImagesByBreedId)(BREED_TEST));
     expect(breeds.data.length).toBeGreaterThan(0);
 }));
 test('cannot get images for a breed that does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
-    const breeds = yield (0, api_1.GetImagesByBreedId)(FAIL_BREED);
+    const breeds = (yield (0, api_1.GetImagesByBreedId)(FAIL_BREED));
     expect(breeds.message).toEqual(errors_1.ERRORS.CannotFindImagesForBreed);
 }));
