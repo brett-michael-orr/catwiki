@@ -1,7 +1,8 @@
 import * as dotenv from 'dotenv';
 import express from "express";
 import path from 'path';
-import { GetBreeds, GetImagesByBreedId } from './api';
+import { Z_ERRNO } from 'zlib';
+import { GetBreedById, GetBreeds, GetImagesByBreedId } from './api';
 dotenv.config();
 
 const PORT = process.env.PORT || 3001;
@@ -21,7 +22,17 @@ app.get("/breeds", async (req, res) => {
     res.json(breeds.data);
   } catch (err) {
     console.error(err);
-    res.json({ error: "Could not find cat breeds." });
+    res.json(err);
+  }
+});
+
+app.get("/breeds/:id", async(req: { params: { id: string }}, res) => {
+  try {
+    const images = await GetBreedById(req.params.id);
+    res.json(images.data);
+  } catch (err) {
+    console.error(err);
+    res.json(err);
   }
 });
 
@@ -31,9 +42,11 @@ app.get("/breeds/:id/images", async(req: { params: { id: string }}, res) => {
     res.json(images.data);
   } catch (err) {
     console.error(err);
-    res.json({ error: "Could not find images for that cat breed." });
+    res.json(Z_ERRNO);
   }
-})
+});
+
+
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
