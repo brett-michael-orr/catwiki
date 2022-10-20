@@ -12,7 +12,7 @@ test('get images for the specified breed', async () => {
     const breeds = (await GetImagesByBreedId(BREED_TEST)) as AxiosResponse<
         IImage[]
     >;
-    expect(breeds.data.length).toBeGreaterThan(0);
+    expect(breeds.data.length).toBe(4);
 });
 
 test('cannot get images for a breed that does not exist', async () => {

@@ -7,7 +7,7 @@ export const GetImagesByBreedId = async (
 ): Promise<AxiosResponse<IImage[]> | Error> => {
     try {
         const result = await axios.get(
-            `${process.env.API_ROOT}images/search?breed_ids=${breedId}`
+            `${process.env.API_ROOT}images/search?breed_ids=${breedId}&limit=4`
         );
         if (result.data.length > 0) {
             return result;

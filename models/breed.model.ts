@@ -4,6 +4,7 @@ export interface IWeight {
 }
 
 export interface IBreed {
+    [index: string]: any;
     weight: IWeight;
     id: string;
     name: string;

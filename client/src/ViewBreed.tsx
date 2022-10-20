@@ -1,15 +1,18 @@
 import * as React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 import { useParams } from 'react-router-dom';
 import { IBreed } from '../../models/breed.model';
+import { IImage } from '../../models/image.model';
 import './styles.css';
 
 export const ViewBreed = () => {
     const { breedId } = useParams();
     const [breed, setBreed] = React.useState<IBreed>();
+    const [images, setImages] = React.useState<IImage[]>([]);
 
     React.useEffect(() => {
         if (!!breedId) {
@@ -17,7 +20,15 @@ export const ViewBreed = () => {
                 .then((res) => res.json())
                 .then((data) => setBreed(data));
         }
-    }, [breed]);
+    }, []);
+
+    React.useEffect(() => {
+        if (!!breedId) {
+            fetch(`/api/breeds/${breedId}/images`)
+                .then((res) => res.json())
+                .then((data) => setImages(data));
+        }
+    }, []);
 
     // type DisplayAttribute = keyof IBreed;
     const displayAttributes = [
@@ -71,6 +82,17 @@ export const ViewBreed = () => {
                                 </p>
                             </div>
                         </Col>
+                    </Row>
+                    <Row className="align-items-center justify-content-center">
+                        {images.map((img) => (
+                            <Col>
+                                <Image
+                                    src={img.url}
+                                    fluid={true}
+                                    roundedCircle={true}
+                                ></Image>
+                            </Col>
+                        ))}
                     </Row>
                     <Row className="gx-5 align-items-center justify-content-center">
                         <Col lg={8} xl={7} xxl={6}>

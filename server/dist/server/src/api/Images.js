@@ -17,7 +17,7 @@ const axios_1 = __importDefault(require("axios"));
 const errors_1 = require("./errors");
 const GetImagesByBreedId = (breedId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield axios_1.default.get(`${process.env.API_ROOT}images/search?breed_ids=${breedId}`);
+        const result = yield axios_1.default.get(`${process.env.API_ROOT}images/search?breed_ids=${breedId}&limit=4`);
         if (result.data.length > 0) {
             return result;
         }
