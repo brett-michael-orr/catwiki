@@ -8,6 +8,7 @@ Here are the features of my coding test:
 
 -   Uplifted server to Typescript
 -   Jest unit testing (admittedly it's pretty basic)
+-   Interface models generated from the cat api payloads
 -   .env environment variables in case API changed per env
 -   Custom error throwing on the server
 -   Uplifted client to Typescript
