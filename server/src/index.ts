@@ -18,7 +18,7 @@ app.get('/api', (req, res) => {
     res.json({ message: 'Hello from CatWiki!' });
 });
 
-app.get('/breeds', async (req, res) => {
+app.get('/api/breeds', async (req, res) => {
     try {
         const breeds = await GetBreeds();
         res.json(breeds.data);
@@ -28,7 +28,7 @@ app.get('/breeds', async (req, res) => {
     }
 });
 
-app.get('/breeds/:id', async (req: { params: { id: string } }, res) => {
+app.get('/api/breeds/:id', async (req: { params: { id: string } }, res) => {
     try {
         const breed = (await GetBreedById(
             req.params.id
@@ -40,17 +40,20 @@ app.get('/breeds/:id', async (req: { params: { id: string } }, res) => {
     }
 });
 
-app.get('/breeds/:id/images', async (req: { params: { id: string } }, res) => {
-    try {
-        const images = (await GetImagesByBreedId(
-            req.params.id
-        )) as AxiosResponse<IImage[]>;
-        res.json(images.data);
-    } catch (err) {
-        console.error(err);
-        res.json(err);
+app.get(
+    '/api/breeds/:id/images',
+    async (req: { params: { id: string } }, res) => {
+        try {
+            const images = (await GetImagesByBreedId(
+                req.params.id
+            )) as AxiosResponse<IImage[]>;
+            res.json(images.data);
+        } catch (err) {
+            console.error(err);
+            res.json(err);
+        }
     }
-});
+);
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {

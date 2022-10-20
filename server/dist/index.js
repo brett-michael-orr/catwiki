@@ -47,7 +47,7 @@ app.use(express_1.default.static(path_1.default.resolve(__dirname, '../client/pu
 app.get('/api', (req, res) => {
     res.json({ message: 'Hello from CatWiki!' });
 });
-app.get('/breeds', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/api/breeds', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const breeds = yield (0, api_1.GetBreeds)();
         res.json(breeds.data);
@@ -57,7 +57,7 @@ app.get('/breeds', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.json(err);
     }
 }));
-app.get('/breeds/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/api/breeds/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const breed = (yield (0, api_1.GetBreedById)(req.params.id));
         res.json(breed.data);
@@ -67,7 +67,7 @@ app.get('/breeds/:id', (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.json(err);
     }
 }));
-app.get('/breeds/:id/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/api/breeds/:id/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const images = (yield (0, api_1.GetImagesByBreedId)(req.params.id));
         res.json(images.data);
