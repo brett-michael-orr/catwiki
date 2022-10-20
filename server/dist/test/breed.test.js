@@ -36,17 +36,17 @@ const dotenv = __importStar(require("dotenv"));
 const api_1 = require("../api");
 const errors_1 = require("../api/errors");
 dotenv.config();
-const BREED_TEST = "beng";
-const BREED_FAIL = "XXXX";
+const BREED_TEST = 'beng';
+const BREED_FAIL = 'XXXX';
 test('get the breeds list', () => __awaiter(void 0, void 0, void 0, function* () {
     const breeds = yield (0, api_1.GetBreeds)();
     expect(breeds.data.length).toBeGreaterThan(0);
 }));
 test('can get a specific breed', () => __awaiter(void 0, void 0, void 0, function* () {
-    const breed = yield (0, api_1.GetBreedById)(BREED_TEST);
+    const breed = (yield (0, api_1.GetBreedById)(BREED_TEST));
     expect(breed.data).not.toStrictEqual({});
 }));
-test('can not get a breed that doesn\'t exist', () => __awaiter(void 0, void 0, void 0, function* () {
-    const breed = yield (0, api_1.GetBreedById)(BREED_FAIL);
+test("can not get a breed that doesn't exist", () => __awaiter(void 0, void 0, void 0, function* () {
+    const breed = (yield (0, api_1.GetBreedById)(BREED_FAIL));
     expect(breed.message).toBe(errors_1.ERRORS.CannotFindBreed);
 }));

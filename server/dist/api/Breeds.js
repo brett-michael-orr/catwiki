@@ -22,7 +22,7 @@ exports.GetBreeds = GetBreeds;
 const GetBreedById = (breedId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield axios_1.default.get(`${process.env.API_ROOT}breeds/${breedId}`);
-        if (result.data.length > 0) {
+        if (Object.keys(result.data).length > 0) {
             return result;
         }
         else {

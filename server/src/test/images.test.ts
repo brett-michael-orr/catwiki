@@ -3,8 +3,8 @@ import { GetImagesByBreedId } from '../api';
 import { ERRORS } from '../api/errors';
 dotenv.config();
 
-const BREED_TEST = "beng";
-const FAIL_BREED = "XXXX";
+const BREED_TEST = 'beng';
+const FAIL_BREED = 'XXXX';
 
 test('get images for the specified breed', async () => {
     const breeds = await GetImagesByBreedId(BREED_TEST);

@@ -44,27 +44,37 @@ const PORT = process.env.PORT || 3001;
 const app = (0, express_1.default)();
 // Have Node serve the files for our built React app
 app.use(express_1.default.static(path_1.default.resolve(__dirname, '../client/public')));
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from CatWiki!" });
+app.get('/api', (req, res) => {
+    res.json({ message: 'Hello from CatWiki!' });
 });
-app.get("/breeds", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/breeds', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const breeds = yield (0, api_1.GetBreeds)();
         res.json(breeds.data);
     }
     catch (err) {
         console.error(err);
-        res.json({ error: "Could not find cat breeds." });
+        res.json(err);
     }
 }));
-app.get("/breeds/:id/images", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/breeds/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const breed = (yield (0, api_1.GetBreedById)(req.params.id));
+        res.json(breed.data);
+    }
+    catch (err) {
+        console.error(err);
+        res.json(err);
+    }
+}));
+app.get('/breeds/:id/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const images = yield (0, api_1.GetImagesByBreedId)(req.params.id);
         res.json(images.data);
     }
     catch (err) {
         console.error(err);
-        res.json({ error: "Could not find images for that cat breed." });
+        res.json(err);
     }
 }));
 // All other GET requests not handled before will return our React app
