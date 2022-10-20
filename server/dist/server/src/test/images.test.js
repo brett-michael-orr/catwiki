@@ -43,6 +43,10 @@ test('get images for the specified breed', () => __awaiter(void 0, void 0, void 
     expect(breeds.data.length).toBe(4);
 }));
 test('cannot get images for a breed that does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
-    const breeds = (yield (0, api_1.GetImagesByBreedId)(FAIL_BREED));
-    expect(breeds.message).toEqual(errors_1.ERRORS.CannotFindImagesForBreed);
+    try {
+        yield (0, api_1.GetImagesByBreedId)(FAIL_BREED);
+    }
+    catch (err) {
+        expect(err.message).toEqual(errors_1.ERRORS.CannotFindImagesForBreed);
+    }
 }));

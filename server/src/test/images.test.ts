@@ -16,6 +16,9 @@ test('get images for the specified breed', async () => {
 });
 
 test('cannot get images for a breed that does not exist', async () => {
-    const breeds = (await GetImagesByBreedId(FAIL_BREED)) as Error;
-    expect(breeds.message).toEqual(ERRORS.CannotFindImagesForBreed);
+    try {
+        await GetImagesByBreedId(FAIL_BREED);
+    } catch (err) {
+        expect(err.message).toEqual(ERRORS.CannotFindImagesForBreed);
+    }
 });

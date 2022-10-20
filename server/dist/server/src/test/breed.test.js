@@ -47,6 +47,10 @@ test('can get a specific breed', () => __awaiter(void 0, void 0, void 0, functio
     expect(breed.data).not.toStrictEqual({});
 }));
 test("can not get a breed that doesn't exist", () => __awaiter(void 0, void 0, void 0, function* () {
-    const breed = (yield (0, api_1.GetBreedById)(BREED_FAIL));
-    expect(breed.message).toBe(errors_1.ERRORS.CannotFindBreed);
+    try {
+        yield (0, api_1.GetBreedById)(BREED_FAIL);
+    }
+    catch (err) {
+        expect(err.message).toBe(errors_1.ERRORS.CannotFindBreed);
+    }
 }));

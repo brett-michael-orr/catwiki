@@ -44,9 +44,6 @@ const PORT = process.env.PORT || 3001;
 const app = (0, express_1.default)();
 // Have Node serve the files for our built React app
 app.use(express_1.default.static(path_1.default.resolve(__dirname, '../client/public')));
-app.get('/api', (req, res) => {
-    res.json({ message: 'Hello from CatWiki!' });
-});
 app.get('/api/breeds', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const breeds = yield (0, api_1.GetBreeds)();
@@ -54,7 +51,7 @@ app.get('/api/breeds', (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     catch (err) {
         console.error(err);
-        res.json(err);
+        res.status(400).json(err.message);
     }
 }));
 app.get('/api/breeds/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -64,7 +61,7 @@ app.get('/api/breeds/:id', (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
     catch (err) {
         console.error(err);
-        res.json(err);
+        res.status(400).json(err.message);
     }
 }));
 app.get('/api/breeds/:id/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -74,7 +71,7 @@ app.get('/api/breeds/:id/images', (req, res) => __awaiter(void 0, void 0, void 0
     }
     catch (err) {
         console.error(err);
-        res.json(err);
+        res.status(400).json(err.message);
     }
 }));
 // All other GET requests not handled before will return our React app

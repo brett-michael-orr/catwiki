@@ -16,17 +16,12 @@ exports.GetImagesByBreedId = void 0;
 const axios_1 = __importDefault(require("axios"));
 const errors_1 = require("./errors");
 const GetImagesByBreedId = (breedId) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield axios_1.default.get(`${process.env.API_ROOT}images/search?breed_ids=${breedId}&limit=4`);
-        if (result.data.length > 0) {
-            return result;
-        }
-        else {
-            throw new Error(errors_1.ERRORS.CannotFindImagesForBreed);
-        }
+    const result = yield axios_1.default.get(`${process.env.API_ROOT}images/search?breed_ids=${breedId}&limit=4`);
+    if (result.data.length > 0) {
+        return result;
     }
-    catch (err) {
-        return err;
+    else {
+        throw new Error(errors_1.ERRORS.CannotFindImagesForBreed);
     }
 });
 exports.GetImagesByBreedId = GetImagesByBreedId;

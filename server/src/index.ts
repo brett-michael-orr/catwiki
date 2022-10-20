@@ -14,17 +14,13 @@ const app = express();
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/public')));
 
-app.get('/api', (req, res) => {
-    res.json({ message: 'Hello from CatWiki!' });
-});
-
 app.get('/api/breeds', async (req, res) => {
     try {
         const breeds = await GetBreeds();
         res.json(breeds.data);
     } catch (err) {
         console.error(err);
-        res.json(err);
+        res.status(400).json(err.message);
     }
 });
 
@@ -36,7 +32,7 @@ app.get('/api/breeds/:id', async (req: { params: { id: string } }, res) => {
         res.json(breed.data);
     } catch (err) {
         console.error(err);
-        res.json(err);
+        res.status(400).json(err.message);
     }
 });
 
@@ -50,7 +46,7 @@ app.get(
             res.json(images.data);
         } catch (err) {
             console.error(err);
-            res.json(err);
+            res.status(400).json(err.message);
         }
     }
 );

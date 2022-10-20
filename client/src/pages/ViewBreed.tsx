@@ -10,22 +10,40 @@ import { IImage } from '../../../models/image.model';
 
 export const ViewBreed = () => {
     const { breedId } = useParams();
+    const [loading, setLoading] = React.useState(true);
     const [breed, setBreed] = React.useState<IBreed>();
     const [images, setImages] = React.useState<IImage[]>([]);
+    const [error, setError] = React.useState(false);
 
     React.useEffect(() => {
         if (!!breedId) {
-            fetch(`/api/breeds/${breedId}`)
-                .then((res) => res.json())
-                .then((data) => setBreed(data));
+            fetch(`/api/breeds/${breedId}`).then((res) => {
+                if (res.status == 200) {
+                    res.json().then((data) => {
+                        setBreed(data);
+                        setLoading(false);
+                    });
+                } else {
+                    setLoading(false);
+                    setError(true);
+                }
+            });
         }
     }, []);
 
     React.useEffect(() => {
         if (!!breedId) {
-            fetch(`/api/breeds/${breedId}/images`)
-                .then((res) => res.json())
-                .then((data) => setImages(data));
+            fetch(`/api/breeds/${breedId}/images`).then((res) => {
+                if (res.status == 200) {
+                    res.json().then((data) => {
+                        setImages(data);
+                        setLoading(false);
+                    });
+                } else {
+                    setLoading(false);
+                    setError(true);
+                }
+            });
         }
     }, []);
 
@@ -59,13 +77,28 @@ export const ViewBreed = () => {
 
     return (
         <header className="bg-dark py-5" style={{ height: '100%' }}>
-            {!breed ? (
+            {error && (
+                <Container className="px-5">
+                    <Row className="justify-content-center">
+                        <h1 className="text-white">Oh nya!</h1>
+                        <p className="text-white">
+                            An error has occured. You can{' '}
+                            <a className="search-again-link" href="/">
+                                search again
+                            </a>{' '}
+                            to find a different breed.
+                        </p>
+                    </Row>
+                </Container>
+            )}
+            {loading && (
                 <Container className="px-5">
                     <Row className="justify-content-center">
                         <Spinner animation="grow" variant="secondary" />
                     </Row>
                 </Container>
-            ) : (
+            )}
+            {breed && (
                 <Container className="px-5">
                     <Row className="gx-5 align-items-center justify-content-center">
                         <Col lg={8} xl={7} xxl={6}>

@@ -10,7 +10,7 @@ ReactDOM.render(
         <Router>
             <Routes>
                 <Route path="/breeds/:breedId" element={<ViewBreed />}></Route>
-                <Route path="/" element={<App />}></Route>
+                <Route path="*" element={<App />}></Route>
             </Routes>
         </Router>
     </React.StrictMode>,

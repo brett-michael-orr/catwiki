@@ -19,6 +19,9 @@ test('can get a specific breed', async () => {
 });
 
 test("can not get a breed that doesn't exist", async () => {
-    const breed = (await GetBreedById(BREED_FAIL)) as Error;
-    expect(breed.message).toBe(ERRORS.CannotFindBreed);
+    try {
+        await GetBreedById(BREED_FAIL);
+    } catch (err) {
+        expect(err.message).toBe(ERRORS.CannotFindBreed);
+    }
 });
