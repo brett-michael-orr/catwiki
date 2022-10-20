@@ -3,8 +3,8 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
-import { BreedDropdown } from './Dropdown';
-import './styles.css';
+import { BreedDropdown } from '../components/Dropdown';
+import '../styles/styles.css';
 
 function App() {
     const [breed, setBreed] = React.useState<string>();

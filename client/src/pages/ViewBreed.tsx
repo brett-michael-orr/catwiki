@@ -5,9 +5,8 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 import { useParams } from 'react-router-dom';
-import { IBreed } from '../../models/breed.model';
-import { IImage } from '../../models/image.model';
-import './styles.css';
+import { IBreed } from '../../../models/breed.model';
+import { IImage } from '../../../models/image.model';
 
 export const ViewBreed = () => {
     const { breedId } = useParams();

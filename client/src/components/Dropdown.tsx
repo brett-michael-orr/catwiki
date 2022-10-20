@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Form from 'react-bootstrap/Form';
-import { IBreed } from '../../models/breed.model';
+import { IBreed } from '../../../models/breed.model';
 
 export interface BreedDropdownProps {
     onChange(breedId: string): void;

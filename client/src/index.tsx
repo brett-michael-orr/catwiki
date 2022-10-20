@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import App from './App';
-import './index.css';
-import { ViewBreed } from './ViewBreed';
+import App from './pages/App';
+import { ViewBreed } from './pages/ViewBreed';
+import './styles/index.css';
 
 ReactDOM.render(
     <React.StrictMode>
