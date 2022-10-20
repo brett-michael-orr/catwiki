@@ -2,5 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ERRORS = void 0;
 exports.ERRORS = {
-    CannotFindImagesForBreed: "Cannot find images for a breed that does not exist."
+    CannotFindImagesForBreed: "Cannot find images for a breed that does not exist.",
+    CannotFindBreed: "That breed does not exist."
 };
