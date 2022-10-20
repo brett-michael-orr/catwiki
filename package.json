@@ -7,7 +7,8 @@
         "start": "node server/dist/server/src/index.js",
         "test": "npm run build:server && jest ./server/dist/server/src/test",
         "build:server": "./node_modules/.bin/tsc -p server",
-        "build": "cd client && npm install && npm run build"
+        "build:client": "cd client && npm install && npm run build",
+        "build": "npm run build:server && npm run build:client"
     },
     "keywords": [],
     "author": "",
