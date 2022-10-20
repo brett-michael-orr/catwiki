@@ -50,12 +50,19 @@ export const ViewBreed = () => {
     return (
         <header className="bg-dark py-5" style={{ height: '100%' }}>
             {!breed ? (
-                <Spinner animation="grow" />
+                <Container className="px-5">
+                    <Row className="justify-content-center">
+                        <Spinner animation="grow" variant="secondary" />
+                    </Row>
+                </Container>
             ) : (
                 <Container className="px-5">
                     <Row className="gx-5 align-items-center justify-content-center">
                         <Col lg={8} xl={7} xxl={6}>
                             <div className="my-5 text-center text-xl-start">
+                                <a className="search-again-link" href="/">
+                                    Search again
+                                </a>
                                 <h1 className="display-5 fw-bolder text-white mb-2">
                                     {breed.name}
                                 </h1>
