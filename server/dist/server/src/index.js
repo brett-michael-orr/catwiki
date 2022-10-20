@@ -43,7 +43,7 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 const app = (0, express_1.default)();
 // Have Node serve the files for our built React app
-app.use(express_1.default.static(path_1.default.resolve(__dirname, '../../../../client/public')));
+app.use(express_1.default.static(path_1.default.resolve(__dirname, '../../../../client/build')));
 app.get('/api/breeds', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const breeds = yield (0, api_1.GetBreeds)();
@@ -76,7 +76,7 @@ app.get('/api/breeds/:id/images', (req, res) => __awaiter(void 0, void 0, void 0
 }));
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
-    res.sendFile(path_1.default.resolve(__dirname, '../../../../client/public', 'index.html'));
+    res.sendFile(path_1.default.resolve(__dirname, '../../../../client/build', 'index.html'));
 });
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

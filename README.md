@@ -37,3 +37,4 @@ Here are some of the things I would like to improve with more time:
 -   Pagination of cat images
 -   Better server logging of requests and errors using a logging lib
 -   Replace default route home page with a proper 404 page
+-   Caching the breeds list with a singleton or storage
