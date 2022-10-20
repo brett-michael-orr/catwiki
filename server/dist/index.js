@@ -57,6 +57,16 @@ app.get("/breeds", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.json({ error: "Could not find cat breeds." });
     }
 }));
+app.get("/breeds/:id/images", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const images = yield (0, api_1.GetImagesByBreedId)(req.params.id);
+        res.json(images.data);
+    }
+    catch (err) {
+        console.error(err);
+        res.json({ error: "Could not find images for that cat breed." });
+    }
+}));
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
     res.sendFile(path_1.default.resolve(__dirname, '../client/public', 'index.html'));

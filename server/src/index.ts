@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import express from "express";
 import path from 'path';
-import { GetBreeds } from './api';
+import { GetBreeds, GetImagesByBreedId } from './api';
 dotenv.config();
 
 const PORT = process.env.PORT || 3001;
@@ -24,6 +24,16 @@ app.get("/breeds", async (req, res) => {
     res.json({ error: "Could not find cat breeds." });
   }
 });
+
+app.get("/breeds/:id/images", async(req: { params: { id: string }}, res) => {
+  try {
+    const images = await GetImagesByBreedId(req.params.id);
+    res.json(images.data);
+  } catch (err) {
+    console.error(err);
+    res.json({ error: "Could not find images for that cat breed." });
+  }
+})
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {

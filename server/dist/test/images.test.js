@@ -35,7 +35,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 const api_1 = require("../api");
 dotenv.config();
-test('get the breeds list', () => __awaiter(void 0, void 0, void 0, function* () {
-    const breeds = yield (0, api_1.GetBreeds)();
+const BREED_TEST = "beng";
+const FAIL_BREED = "XXXX";
+test('get images for the specified breed', () => __awaiter(void 0, void 0, void 0, function* () {
+    const breeds = yield (0, api_1.GetImagesByBreedId)(BREED_TEST);
     expect(breeds.data.length).toBeGreaterThan(0);
+}));
+test('cannot get images for a breed that does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
+    const breeds = yield (0, api_1.GetImagesByBreedId)(FAIL_BREED);
+    expect(breeds.data.length).toEqual(0);
 }));
