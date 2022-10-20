@@ -2,19 +2,17 @@ import * as React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { IBreed } from '../../models/breed.model';
+import { useNavigate } from 'react-router-dom';
 import { BreedDropdown } from './Dropdown';
 import './styles.css';
 
 function App() {
     const [breed, setBreed] = React.useState<string>();
-    const [breedData, setBreedData] = React.useState<IBreed>();
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         if (!!breed) {
-            fetch(`/api/breeds/${breed}`)
-                .then((res) => res.json())
-                .then((data) => setBreedData(data));
+            navigate(`/breeds/${breed}`);
         }
     }, [breed]);
 

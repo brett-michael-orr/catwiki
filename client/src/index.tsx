@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './App';
 import './index.css';
+import { ViewBreed } from './ViewBreed';
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
             <Routes>
-                <Route path="/breed/:breedId"></Route>
+                <Route path="/breeds/:breedId" element={<ViewBreed />}></Route>
                 <Route path="/" element={<App />}></Route>
             </Routes>
         </Router>
