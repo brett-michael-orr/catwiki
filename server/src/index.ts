@@ -1,5 +1,5 @@
-const path = require('path');
-const express = require("express");
+import express from "express";
+import path from 'path';
 
 const PORT = process.env.PORT || 3001;
 
