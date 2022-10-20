@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IImage } from '../models/image.model';
+import { IImage } from '../../../models/image.model';
 import { ERRORS } from './errors';
 
 export const GetImagesByBreedId = async (

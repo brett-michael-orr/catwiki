@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import * as dotenv from 'dotenv';
+import { IImage } from '../../../models/image.model';
 import { GetImagesByBreedId } from '../api';
 import { ERRORS } from '../api/errors';
-import { IImage } from '../models/image.model';
 dotenv.config();
 
 const BREED_TEST = 'beng';

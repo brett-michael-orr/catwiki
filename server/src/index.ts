@@ -2,9 +2,9 @@ import { AxiosResponse } from 'axios';
 import * as dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
+import { IBreed } from '../../models/breed.model';
+import { IImage } from '../../models/image.model';
 import { GetBreedById, GetBreeds, GetImagesByBreedId } from './api';
-import { IBreed } from './models/breed.model';
-import { IImage } from './models/image.model';
 dotenv.config();
 
 const PORT = process.env.PORT || 3001;

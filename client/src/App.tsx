@@ -2,17 +2,21 @@ import * as React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import { IBreed } from '../../models/breed.model';
 import { BreedDropdown } from './Dropdown';
 import './styles.css';
 
 function App() {
-    const [data, setData] = React.useState(null);
+    const [breed, setBreed] = React.useState<string>();
+    const [breedData, setBreedData] = React.useState<IBreed>();
 
     React.useEffect(() => {
-        fetch('/api')
-            .then((res) => res.json())
-            .then((data) => setData(data.message));
-    }, []);
+        if (!!breed) {
+            fetch(`/api/breeds/${breed}`)
+                .then((res) => res.json())
+                .then((data) => setBreedData(data));
+        }
+    }, [breed]);
 
     return (
         <header className="bg-dark py-5" style={{ height: '100%' }}>
@@ -28,7 +32,11 @@ function App() {
                                 favourite cat breeds!
                             </p>
                             <div className="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                <BreedDropdown />
+                                <BreedDropdown
+                                    onChange={(breedId) => {
+                                        setBreed(breedId);
+                                    }}
+                                />
                             </div>
                         </div>
                     </Col>
